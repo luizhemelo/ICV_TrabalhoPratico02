@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import pygame
 from OpenGL.GL import *
- 
+
 def MTL(filename):
     contents = {}
     mtl = None
@@ -12,7 +12,7 @@ def MTL(filename):
         if values[0] == 'newmtl':
             mtl = contents[values[1]] = {}
         elif mtl is None:
-            raise ValueError, "mtl file doesn't start with newmtl stmt"
+            raise ValueError("mtl file doesn't start with newmtl stmt")
         elif values[0] == 'map_Kd':
             # load the texture referred to by this declaration
             mtl[values[0]] = values[1]
@@ -30,7 +30,7 @@ def MTL(filename):
         else:
             mtl[values[0]] = map(float, values[1:])
     return contents
- 
+
 class OBJ:
     def __init__(self, filename, swapyz=False):
         """Loads a Wavefront OBJ file. """
@@ -38,7 +38,7 @@ class OBJ:
         self.normals = []
         self.texcoords = []
         self.faces = []
- 
+
         material = None
         for line in open(filename, "r"):
             if line.startswith('#'): continue
@@ -76,14 +76,14 @@ class OBJ:
                     else:
                         norms.append(0)
                 self.faces.append((face, norms, texcoords, material))
- 
+
         self.gl_list = glGenLists(1)
         glNewList(self.gl_list, GL_COMPILE)
         #glEnable(GL_TEXTURE_2D)
         glFrontFace(GL_CCW)
         for face in self.faces:
             vertices, normals, texture_coords, material = face
- 
+
             mtl = self.mtl[material]
             if 'texture_Kd' in mtl:
                 # use diffuse texmap
@@ -91,7 +91,7 @@ class OBJ:
             else:
                 # just use diffuse colour
                 glColor(*mtl['Kd'])
- 
+
             glBegin(GL_POLYGON)
             for i in range(len(vertices)):
                 if normals[i] > 0:
