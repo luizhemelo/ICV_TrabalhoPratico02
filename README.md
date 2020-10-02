@@ -10,6 +10,4 @@ A execução da aplicação irá exigir:
   - Biblioteca [OpenGL](https://pypi.org/project/PyOpenGL/) - [Conda version](https://anaconda.org/anaconda/pyopengl)
   - Biblioteca [explicação da FreeGlut no Stack](https://stackoverflow.com/a/39181193) - [Conda version](https://anaconda.org/conda-forge/freeglut) - esta biblioteca não está disponível diretamente por meio do PiPY, o que pode dificultar um pouco a execução
 
-> O arquivo *'copia.py'* contém os códigos-fontes apresentados durante palestra do Ericksson na EVComp.
-
 > O arquivo *'objloader.py'* foi fornecido para o TP, contendo o código-fonte para carregamento do Pikachu no vídeo após renderização.
